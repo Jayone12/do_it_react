@@ -163,3 +163,72 @@ delete obj2.name; // obj2 = {}
 <br>
 
 이 프로젝트에서는 무결성 제약 규칙을 고부할 겸 가급적 불변 변수만 사용해 실습을 진행한다.
+
+<br>
+
+## 클래스
+기존엔 문법엔 class 표현식이 없어 prototype으로 클래스 표현하였다.  
+ES6는 class를 정의하여 사용할 수 있다.
+
+<br>
+
+### 기존 문법으로 표현 방법
+기존 문법에서는 함수를 생성자(constructor) 형태로 선언한 후 상속이 필요한 변수, 함수를 prototype 객체에 할당하는 방법을 사용했다.
+
+<br>
+
+```javascript
+function User(firstName, lastName) {
+  this.name(firstName, lastName);
+  this.age = 12;
+}
+
+//인스턴스 함수를 선언하는 예제
+User.prototype.name = function (firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+};
+
+const classTest = new User('jay', 'park');
+
+console.log(classTest); // User { firstName: 'jay', lastName: 'park', age: 12 }
+```
+
+<br>
+
+### ES6 class 문법 사용 방법
+```javascript
+class User {
+  static create(firstName, lastName) {
+    return new User(firstName, lastName);
+  }
+  constructor(firstName, lastName) {
+    this.name(firstName, lastName);
+  }
+  name(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  age = 12;
+}
+
+const classTest = new User('jay', 'park');
+
+console.log(classTest); // User { age: 12, firstName: 'jay', lastName: 'park' }
+
+class Skill extends User {
+  constructor(firstName, lastName, skill) {
+    super(firstName, lastName);
+    this.skill = skill;
+  }
+}
+
+const skill = new Skill('jay', 'park', 5);
+console.log(skill); // Skill { age: 12, firstName: 'jay', lastName: 'park', skill: 5 }
+```
+
+<br>
+
+class 키워드로 User를 정의하고 constructor 함수를 추가하였다.  
+생성자, 클래스 변수, 클래스 함수 정의에는 변수 선언 키워드를 사용하지 않는다.  
+상속의 경우 extends를 사용하여 User 클래스를 상속하고 부모의 함수를 참조할 경우 super()를 사용한다.
