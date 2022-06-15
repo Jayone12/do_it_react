@@ -1,52 +1,76 @@
-# 리액트란?
-리액트는 페이스북에서 개발할 떄 사용한 기술로 공개 소프트웨어이며, 가장 큰 특징으로 '화면 출력에 특화된 프레임워크'
+# 리액트 ES6 문법
+리액트에 필요한 ES6 문법 공부
 
-## 1. 리액트 장점
-- **컴포넌트로 화면 구성을 효율적으로 할 수 있다.**  
-컴포넌트(component)라는 작고 독립적인 코드 블록을 조합하여 빠르고 효율적으로 화면을 구성하며, 이는 마치 레고 블럭과 비슷하다. 
-![image](https://user-images.githubusercontent.com/53748573/173513799-a190da91-1ada-4720-a079-f48a37b8ec8a.png)
+## 템플릿 문자열
+기존에 사용하던 크고 작은 따옴표('', "") 대신 백틱(\`\`)을 사용한다.
+```javascript
+const string1 = "안녕하세요."
+const string2 = "반값습니다."
 
-리액트는 가상화면 기술을 도입하여 화면 출력 속도를 높이고 코드의 복잡성도 줄였다.
-- **게임 엔진 원리를 도입하여 화면 출력 속도가 빠르다.**  
-대부분의 게임 엔진은 다음 장면에 필요한 화면을 미리 그려 두는 방법으로 화면을 빠르게 전환하는데 이를 리액트에 도입하였다.  
-화면 출력의 속도를 높이고자 다음에 나타날 화면의 일부(노드)를 미리 그려 놓고 변경된 화면의 일부(노드)만 수정하는 가상 화면(Virtual DOM) 기술을 만들어 적용하였다.
+console.log(`${string1} ${string2}`) // 안녕하세요. 반갑습니다.
 
-## 2. 리액트에 필요한 필수 도구
-- 노드 패키지 매니저(NPM)  
-자바스크립트 라이브러리를 관리하는 프로그램
-  - 동작 방식  
-  npm은 라이브러리를 다운받고 설치하여 `node_modules` 폴더에 저장하고 `package.json` 파일로 설치된 라이브러리의 정보를 저장한다.
-- 웹팩(webpack)
-프로젝트에 사용된 파일을 분석하여 기존 웹 문서 파일을로 변환하는 도구
-  - 필요한 이유  
-  프레임워크가 `.js`, `.css`, `.jpg`와 같은 기존 웹 문서 파일을 사용하지 않기 때문. 
-  예로 스타일을 sass로 작성하게 되면 웹 브라우저는 이를 해석하지 못하므로 해석 가능한 css파일로 해석해주어야 하는데 이를 웹팩이 해석
-  - 장점  
-    - js, png, jpg 등과 같은 파일을 적절한 크기로 자르거나 묶어준다.
-    - 불필요한 파일을 제외하거나 압축하여 프로젝트의 용량을 줄여준다.
-    - 간단한 노드 기반의 웹 서버를 구동하기도 한다.
+const product = {
+  name: "도서",
+  price: "4200원"
+}
 
-## 3. 리액트 개발 환경 설치
-해당 부분은 각자 OS환경에 맞게 node.js 및 npm 또는 yarn을 설치한다.  
-node.js는 짝수버전을 설치하는 것을 추천
+console.log(`${product.name}의 가격은 ${product.price}입니다.`) // 도서의 가격은 4200원 입니다.
 
-## 4. 리액트 시작하기
-1. 리액트 프로젝트 생성
-```bash
-npx create-react-app do-it-example
-또는
-yarn create-react-app do-it-example
+const boolValue = false;
+console.log(`${boolValue ? '참' : '거짓'}`); // 거짓
+
 ```
 
-2. 프로젝트 실행하기
-```bash
-cd do-it-example
-npm start
-또는
-cd do-it-example
-yarn start
+## 전개 연산자
+나열형 자료를 추출하거나 연결할 때 사용한다.
+
+### 배열 전개 연산자
+```javascript
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+
+const combined1 = [...arr1, ...arr2];
+console.log(combined1); // [ 1, 2, 3, 4, 5, 6 ]
+
+const [first, second, three, four = 'empty', ...other] = arr1;
+console.log(first, second, three, four, ...other); // 1 2 3 empty []
+
+(function func() {
+  const [first, ...other] = arguments;
+  console.log(...other); // 2 3
+})(...arr1);
 ```
 
-## 기타 사항
-- render() 함수는 HTML을 반환한다.
-- HTML에서의 클래스 이름은 `class` 키워드가 아닌 `className`으로 한다.
+### 객체 전개 연산자
+```javascript
+const obj1 = {
+  one: 1,
+  two: 2,
+  other: 0,
+};
+
+const obj2 = {
+  three: 3,
+  four: 4,
+  other: -1,
+};
+
+const combined1 = {
+  ...obj1,
+  ...obj2,
+};
+
+console.log(combined1); // { one: 1, two: 2, other: -1, three: 3, four: 4 }
+
+const combined2 = {
+  ...obj2,
+  ...obj1,
+};
+
+console.log(combined2); // { three: 3, four: 4, other: 0, one: 1, two: 2 }
+
+const { other, ...others } = combined1;
+
+console.log(other); // -1
+console.log(others); // { one: 1, two: 2, three: 3, four: 4 }
+```
