@@ -4,141 +4,49 @@
 <br>
 
 ## 템플릿 문자열
-기존에 사용하던 크고 작은 따옴표('', "") 대신 백틱(\`\`)을 사용한다.
-```javascript
-const string1 = "안녕하세요."
-const string2 = "반값습니다."
-
-console.log(`${string1} ${string2}`) // 안녕하세요. 반갑습니다.
-
-const product = {
-  name: "도서",
-  price: "4200원"
-}
-
-console.log(`${product.name}의 가격은 ${product.price}입니다.`) // 도서의 가격은 4200원 입니다.
-
-const boolValue = false;
-console.log(`${boolValue ? '참' : '거짓'}`); // 거짓
-
-```
+기존에 사용하던 크고 작은 따옴표('', "") 대신 백틱(\`\`)을 사용한다.  
+[링크](https://github.com/Jayone12/do_it_react/blob/%232/spread_operator/02-01.js)
 
 <br>
 
 ## 전개 연산자
-나열형 자료를 추출하거나 연결할 때 사용한다.
+나열형 자료를 추출하거나 연결할 때 사용한다.  
+사용 방법은 배열이나 객체, 변수명 앞에 마침표 세 개(...)를 입력한다.  
+배열, 객체, 함수 인자 표현식([]. {}. ())안에서만 사용해야한다.
 
 <br>
 
 ### 배열 전개 연산자
-```javascript
-const arr1 = [1, 2, 3];
-const arr2 = [4, 5, 6];
-
-const combined1 = [...arr1, ...arr2];
-console.log(combined1); // [ 1, 2, 3, 4, 5, 6 ]
-
-const [first, second, three, four = 'empty', ...other] = arr1;
-console.log(first, second, three, four, ...other); // 1 2 3 empty []
-
-(function func() {
-  const [first, ...other] = arguments;
-  console.log(...other); // 2 3
-})(...arr1);
-```
+[링크](https://github.com/Jayone12/do_it_react/blob/%232/spread_operator/02-02.js)
 
 <br>
 
 ### 객체 전개 연산자
-```javascript
-const obj1 = {
-  one: 1,
-  two: 2,
-  other: 0,
-};
-
-const obj2 = {
-  three: 3,
-  four: 4,
-  other: -1,
-};
-
-const combined1 = {
-  ...obj1,
-  ...obj2,
-};
-
-console.log(combined1); // { one: 1, two: 2, other: -1, three: 3, four: 4 }
-
-const combined2 = {
-  ...obj2,
-  ...obj1,
-};
-
-console.log(combined2); // { three: 3, four: 4, other: 0, one: 1, two: 2 }
-
-const { other, ...others } = combined1;
-
-console.log(other); // -1
-console.log(others); // { one: 1, two: 2, three: 3, four: 4 }
-```
+[링크](https://github.com/Jayone12/do_it_react/blob/%232/spread_operator/02-03.js)
 
 <br>
 
 ## 가변 변수와 불변 변수
-변수 선언에 있어 var 변수가 있으며, ES6에서는 가변 변수인 `let`과 불변 변수인 `const`를 사용한다.
+ES6에서는 가변 변수인 `let`과 불변 변수인 `const`를 사용한다.
 
 <br>
 
 ### 가변 변수 사용법
-```javascript
-let num = 1;
-num = num * 3;
-
-let str = '문자';
-str = '다른문자';
-
-let arr = [];
-arr = [1, 2, 3];
-
-let obj = {};
-obj = {
-  name: '새 객체',
-};
-
-```
+가변 변수는 `let`으로 선언한 변수는 읽거나 수정할 수 있다.  
+[링크](https://github.com/Jayone12/do_it_react/blob/%232/variable/03-01.js)
 
 <br>
 
 ### 불변 함수 사용법
-```javascript
-const num = 1;
-num = 3; // 자료형 오류 발생
+불변 변수는 `const` 키워드로 선언하며 읽기만 가능하다.  
+값이 재할당할 수 없는 것이지 값을 변경할 수는 있다.  
+[링크](https://github.com/Jayone12/do_it_react/blob/%232/variable/03-02.js)
 
-const str = '문자';
-str = '새 문자'; // 자료형 오류 발생
+<br>
 
-const arr = [];
-arr = [1, 2, 3]; // 자료형 오류 발생
+배열이나 객체를 불변 변수로 선언한 후 자바스크립트의 내장함수를 사용하여 값을 변경 할 수 있다.  
+[링크](https://github.com/Jayone12/do_it_react/blob/%232/variable/03-03.js)
 
-const obj = {};
-obj = {name: '내 이름',}; // 자료형 오류 발생
-```
-
-배열이나 객체를 불변 변수로 선언한 후 자바스크립트의 내장함수를 사용하여 값을 변경 할 수 있다.
-
-```javascript
-// 내장 함수로 객체 및 배열 값 변경하기
-const arr2 = [];
-arr2.push(1); // arr2 = [1]
-arr2.splice(0, 0, 0); // arr2 = [0, 1]
-arr2.pop(); // arr2 = [1]
-
-const obj2 = {};
-obj2['name'] = '내 이름'; // obj2 = {name: '내 이름'}
-Object.assign(obj2, { name: '새 이름' }); // obj2 = {name: '새 이름'}
-delete obj2.name; // obj2 = {}
-```
 
 불변 변수는 값을 수정할 수 없는데 위와 같이 수정 하는 것을 `'무결성 제약 조건 위배되었다'` 라고 한다.  
 해당 내용에서는 불변 변수로 정의된 배열이나 객체를 내장 함수로 수정하는 것을 암묵적으로 금지하여 무결성을 유지할 것이다.  
@@ -167,68 +75,25 @@ delete obj2.name; // obj2 = {}
 <br>
 
 ## 클래스
-기존엔 문법엔 class 표현식이 없어 prototype으로 클래스 표현하였다.  
-ES6는 class를 정의하여 사용할 수 있다.
-
-<br>
-
-### 기존 문법으로 표현 방법
-기존 문법에서는 함수를 생성자(constructor) 형태로 선언한 후 상속이 필요한 변수, 함수를 prototype 객체에 할당하는 방법을 사용했다.
-
-<br>
-
-```javascript
-function User(firstName, lastName) {
-  this.name(firstName, lastName);
-  this.age = 12;
-}
-
-//인스턴스 함수를 선언하는 예제
-User.prototype.name = function (firstName, lastName) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-};
-
-const classTest = new User('jay', 'park');
-
-console.log(classTest); // User { firstName: 'jay', lastName: 'park', age: 12 }
-```
-
-<br>
-
-### ES6 class 문법 사용 방법
-```javascript
-class User {
-  static create(firstName, lastName) {
-    return new User(firstName, lastName);
-  }
-  constructor(firstName, lastName) {
-    this.name(firstName, lastName);
-  }
-  name(firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-  age = 12;
-}
-
-const classTest = new User('jay', 'park');
-
-console.log(classTest); // User { age: 12, firstName: 'jay', lastName: 'park' }
-
-class Skill extends User {
-  constructor(firstName, lastName, skill) {
-    super(firstName, lastName);
-    this.skill = skill;
-  }
-}
-
-const skill = new Skill('jay', 'park', 5);
-console.log(skill); // Skill { age: 12, firstName: 'jay', lastName: 'park', skill: 5 }
-```
-
-<br>
 
 class 키워드로 User를 정의하고 constructor 함수를 추가하였다.  
 생성자, 클래스 변수, 클래스 함수 정의에는 변수 선언 키워드를 사용하지 않는다.  
 상속의 경우 extends를 사용하여 User 클래스를 상속하고 부모의 함수를 참조할 경우 super()를 사용한다.
+
+<br>
+
+### ES6 class 문법 사용 방법
+[링크](https://github.com/Jayone12/do_it_react/blob/%232/class/04-02.js)
+
+<br>
+
+## 화살표 함수
+Arrow funtion이라고도 부른다.  
+- 함수 표현식을 간결하게 할 수 있다.
+- 커링(currying)과 같은 디자인패턴에서 사용되는 함수를 반환할때 `'계단형 함수 선언'`과 같은 구조가 만들어지지 않게 해준다.  
+
+[링크](https://github.com/Jayone12/do_it_react/tree/%232/arrow_function)
+
+<br>
+
+화살표 함수는 콜백 함수의 this 범위로 오류가 생기니 주의해야한다. 이는 bind() 함수를 사용하여 해결 가능
