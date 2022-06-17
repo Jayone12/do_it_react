@@ -1,27 +1,25 @@
-class User {
-  static create(firstName, lastName) {
-    return new User(firstName, lastName);
+class Shape {
+  constructor(x, y) {
+    this.name = 'shape';
+    this.move(x, y);
   }
-  constructor(firstName, lastName) {
-    this.name(firstName, lastName);
+  move(x, y) {
+    this.x = x;
+    this.y = y;
   }
-  name(firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-  age = 12;
-}
-
-const classTest = new User('jay', 'park');
-
-console.log(classTest); // User { age: 12, firstName: 'jay', lastName: 'park' }
-
-class Skill extends User {
-  constructor(firstName, lastName, skill) {
-    super(firstName, lastName);
-    this.skill = skill;
+  area() {
+    return 0;
   }
 }
 
-const skill = new Skill('jay', 'park', 5);
-console.log(skill); // Skill { age: 12, firstName: 'jay', lastName: 'park', skill: 5 }
+class Circle extends Shape {
+  constructor(x, y, radius) {
+    super(x, y);
+    this.radius = radius;
+  }
+  area() {
+    return this.radius * this.radius * Math.PI;
+  }
+}
+const c = new Circle(0, 0, 10);
+console.log(c.area());
