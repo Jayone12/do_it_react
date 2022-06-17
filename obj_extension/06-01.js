@@ -1,16 +1,17 @@
 const x = 0;
 const y = 0;
-const obj = { x: x, y: y };
+const obj = { x, y };
 const randomKeyString = 'other';
-let combined = {};
-combined['one' + randomKeyString] = 'some value';
+let combined = {
+ ['one' + randomKeyString]: 'some value'
+};
 
 const obj2 = {
-  x: x,
-  methodA: () => {
+  x,
+  methodA(){
     console.log('method A');
   },
-  methodB: () => 0,
+  methodB(){0},
 };
 
 console.log(combined); // { oneother: 'some value' }
