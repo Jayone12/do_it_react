@@ -97,3 +97,29 @@ Arrow funtion이라고도 부른다.
 <br>
 
 화살표 함수는 콜백 함수의 this 범위로 오류가 생기니 주의해야한다. 이는 bind() 함수를 사용하여 해결 가능
+
+## 객체 확장 표현식과 구조 분해 할당
+객체나 배열의 특정값을 손쉽게 추출할 수 있는 표현식 추가
+
+<br>
+
+### 기존 객체 확장 표현식 사용방법
+[링크](https://github.com/Jayone12/do_it_react/blob/%232/obj_extension/06-01.js)
+
+<br>
+
+### ES6 객체 확장 표현식 방법
+[링크](https://github.com/Jayone12/do_it_react/commit/17c2e397bfabd4449342e9fbb8086c12a2fe65bb)
+
+<br>
+
+### 기존 구조 분해 할당
+[링크](https://github.com/Jayone12/do_it_react/commit/ea4694e26fbbce2819db3ee71d4213f761e5b7e6)
+
+<br>
+
+### ES6 구조 분해 할당
+[링크](https://github.com/Jayone12/do_it_react/commit/3dd9d09f74b4f27450f6cecf56320fa65e3c1bb0)  
+구조 할당은 전개 연산자를 함께 사용한다. 구조 분해와 구조 할당은 함수 인잣값을 다루거나 JSON 데이터를 변환할 때 유용하다.
+
+
