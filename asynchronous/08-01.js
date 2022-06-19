@@ -1,3 +1,4 @@
+// 콜백 예제
 function work1(onDone) {
   setTimeout(() => onDone('작업1 완료!'), 100);
 }
