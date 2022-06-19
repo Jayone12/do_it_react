@@ -17,20 +17,18 @@ function urgentWork() {
   console.log('긴급 작업');
 }
 
-const nextWorkOnDone = (msg1) => {
-  console.log('done after 100ms: ' + msg1);
-  return work2();
-};
+const work1and2 = () =>
+  work1().then((msg1) => {
+    console.log('done after 100ms: ' + msg1);
+    return work2();
+  });
 
-work1()
-  .then(nextWorkOnDone)
+work1and2()
   .then((msg2) => {
     console.log('done after 200ms: ' + msg2);
     return work3();
   })
-  .then((msg3) => {
-    console.log('done after 300ms: ' + msg3);
-  });
+  .then((msg3) => console.log('done after 300ms: ' + msg3));
 
 urgentWork();
 
