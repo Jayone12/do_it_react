@@ -122,4 +122,32 @@ Arrow funtion이라고도 부른다.
 [링크](https://github.com/Jayone12/do_it_react/commit/3dd9d09f74b4f27450f6cecf56320fa65e3c1bb0)  
 구조 할당은 전개 연산자를 함께 사용한다. 구조 분해와 구조 할당은 함수 인잣값을 다루거나 JSON 데이터를 변환할 때 유용하다.
 
+<br>
 
+## 비동기 함수
+비동기 처리란 작업 시간이 믾이 필요한 작업 A를 처리하느라 다른 작업들(B, C, D, ...)이 대기하고 있는 상태라면  
+일단 다른 작업들을 먼저 진행하고 작업 A와 작업 A와 연관된 작업을 이후에 처리하는 방식이다.
+
+### 콜백(callback)을 이용한 비동기
+[링크](https://github.com/Jayone12/do_it_react/commit/cc4826f635ab15e2745e6fc552639d0059aceabd)  
+위 링크에서 보듯 콜백 함수가 총 3개의 계단 모양으로 작성되어 있으며, 이를 `콜백 지옥(callback hell)`이라 부른다.  
+이는 비동기로 구성해야할 기능이 많아 질수록 골치아파 진다.  
+
+<br>
+
+### Promise를 사용한 비동기
+Promise 객체를 생성할 때는 다음과 같이 resolve() 함수 또는 reject() 함수에 해당하는 골백 함수를 직접 전달해야한다.  
+resolve()함수는 이후 then()함수에 인자로 전달할 콜백 함수 onDone()과 일치한다.  
+여기서 예외를 처리하는 reject()함수는 콜백 함수로 전달하지 않는다.  
+[링크](https://github.com/Jayone12/do_it_react/commit/c8fddf30a1bda26013d0da145407e819d03573e3)  
+
+<br>
+
+1. work1.then(nextWorkOnDone) -> nextWorkOnDone()가 Promise의 resolve()로 전달  
+2. work2() 실행 -> Promise 객체 반환 -> work2().then()이 work3() 실행 -> Promise 객체 반환 -> work3.then() 실행
+
+<br>
+
+then()함수가 Promise 객체를 반환하므로 이를 응용하면 각 지연 작업들을 나누거나 다시 합칠 수 있다.  
+work1and2().then()이 work2() 구문을 실행하여 Promise 객체를 반환하므로 손쉽게 이어 붙일 수 있다.  
+[링크](https://github.com/Jayone12/do_it_react/commit/4a3786d306ac6b594ae60542b916eae5e7564cdf)
