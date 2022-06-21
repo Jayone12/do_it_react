@@ -109,3 +109,24 @@ export default TodaysPlan;
 
 app.js에서 \<TodaysPlan\>에 프로퍼티로 `message="바다로"`를 전달하였다.  
 이를 2번에서 받아와서 나타낼 수 있다. 상위에서 하위 컴포넌트로 전달하는 것을 `단방향 데이터`라고 한다.
+
+<br>
+
+## 컴포넌트 상태 관리
+
+<br>
+
+### state로 상태 관리
+state는 '값을 저장하거나 변경할 수 있는 개체'로 보통 버튼을 클릭하거나 값을 입력하는 등의 이벤트와 함께 사용한다.  
+[링크](https://github.com/Jayone12/do_it_react/blob/%233/src/StateExample.jsx)  
+
+<br>
+
+1. state 값을 변경할때는 setState() 함수를 사용해야 한다.
+  -> state 값을 직접 변경하면 안 되는 이유는 화면을 그려주는 시점은 리액트 엔진이 정하기 때문이다.  
+  즉, state 값을 직접 변경하여도 새로 렌더링이 되지 않으며, setState()를 통해 변경해야 재 렌더링을 한다.
+2. setState()는 비동기로 처리되며, setState() 코드 이후로 연결된 함수들의 실행이 완료된 시점에 화면 동기화 과정을 거친다.
+3. setState() 함수의 인자로 함수를 전달하면 이전 state 값을 쉽게 읽을 수 있다.
+```javascript
+setState((prevState) => prevState + 1);
+```
