@@ -1,12 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import TodaysPlan from './TodaysPlan';
 
 function App() {
   return (
     <div className="App">
-      <h1 className="title">두잇! 리액트 시작하기</h1>
+      <TodaysPlan messege="바다로" />
     </div>
   );
 }
 
 export default App;
+
