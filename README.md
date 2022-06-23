@@ -130,3 +130,71 @@ state는 '값을 저장하거나 변경할 수 있는 개체'로 보통 버튼�
 ```javascript
 setState((prevState) => prevState + 1);
 ```
+
+<br>
+
+## 컴포넌트의 생명주기
+컴포넌트의 생성부터 소멸까지의 과정을 생명주기(Lifecycle)이라 한다. 이를 이용하여 특정 시점에 원하는 동작을 할 수 있도록 만들 수 있다.  
+
+<br>
+
+### 생명주기 함수 살펴보기
+class형 컴포넌트의 render()를 포함하여 총 8개의 함수가 있으며, 이 함수는 리액트 엔진에서 자동으로 호출한다.  
+![image](https://user-images.githubusercontent.com/53748573/175203687-19b8f2a2-26fb-4486-b48b-d2ef1307b86d.png)
+
+#### 컴포넌트 생성부터 완료까지
+1. constructor(props)함수
+constructor()함수는 '맨 처음에 생성될 때 한 번만 호출'되며, 상태(state 또는 객체 변수)를 선언할 때 사용된다.  
+항상 super() 함수를 가장 위에 호출해야 한다. 이유는 프로퍼티와 생명 주기 상태등을 초기화 등 과정을 포함하기 때문이다.  
+```javascript
+constuctor(props){
+  super(props);
+  // 이후에 추가적인 state 데이터 혹은 변수를 선언한다.
+}
+```
+  
+2. render() 함수
+데이터가 변경되어 새 화면을 그려야 할 때 자동으로 호출되는 함수
+
+3. static getDerivedStateFromProps(props, state) 함수
+정적 함수로 함수 내 this.props나 this.state와 같은 방법으로 프로퍼티나 state값에 접근할 수 없다. 만약 각 값에 접근해야 하는 경우,  
+반드시 인자로 전달된 props, state를 이용해야 한다.
+
+4. componentDidMount() 함수
+render() 함수가 jsx를 화면에 그린 이후에 호출되는 함수로 컴포넌트가 화면에 모두 표현된 이후 해야할 작업들을 이곳에 한다.
+
+5. shouldComponentUpdate(nextProps, nextState) 함수
+화면을 새로 출력할지 말지 판단하여, 데이터 변화를 비교하는 작업으로 리액트 성능에 영향을 많이 준다.
+
+6. getSnapshotBeforeUpdate(prevProps, prevState) 함수
+컴포넌트의 변경된 내용이 가상 화면에 완성된 이후 호출되는 함수
+
+7. componentDidUpdate(prevProps, prevState, snapshot) 함수
+컴포넌트가 실제 화면에 출력된 이후 호출되는 함수이며, snapshot은 getSnapshotBeforeUpdate() 함수에서 반환된 값.
+
+8. componentWillUnmount() 함수
+컴포넌트가 소멸되기 직전에 호출되는 함수로 컴포넌트를 감시하고 있는 작업들을 해제한다.
+
+<br>
+
+과거 함수형 컴포넌트에서는 state와 생명주기 함수를 사용할수 없었지만 v16.8부터 hook을 통해 사용할 수 있다.  
+
+<br>
+
+### 배열 컴포넌트
+map()을 사용하여 여러 화면을 손쉽게 출력할 수 있다.
+```javascript
+const todoList = [
+  {taskName: '빨래하기', finished: false},
+  {taskName: '공부하기', finished: true},
+];
+
+render(
+  <div>
+    {todoList.map(todo => <div key={}>{todo.taskName}</div>)}
+  </div>
+)
+```
+이 때 꼭 key값을 정의 해야 하는데 index값을 key로 넣는건 피해야한다.  
+React는 key를 통해 기존 트리와 이후 트리의 자식들이 일치하는지 확인한다.  
+예를 들어, 위 비효율적인 예시에 key를 추가하여 트리의 변환 작업이 효율적으로 수행되도록 수정할 수 있습니다.
